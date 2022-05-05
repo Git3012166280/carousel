@@ -9,6 +9,8 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.List;
 
+import processimages.ProcessImages;
+
 public class RotationMapAdapter extends PagerAdapter {
     private List<Integer> mPics = null;
 
@@ -17,7 +19,7 @@ public class RotationMapAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView imageView = new ImageView(container.getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setImageResource(mPics.get(position % mPics.size()));
+        imageView.setImageBitmap(ProcessImages.decodeCalSampledBitmapFromResource(container.getResources(), mPics.get(position % mPics.size()), 0,ProcessImages.dip2px(container.getContext(),260)));
         container.addView(imageView);
         return imageView;
     }
